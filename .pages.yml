@@ -12,7 +12,7 @@ content:
       - name: title
         label: Titre du tableau
         type: string
-      - name: description
+      - name: body
         label: Description
         type: rich-text
       - name: image
