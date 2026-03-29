@@ -10,16 +10,19 @@ content:
     path: src/content/tableaux
     fields:
       - name: title
-        label: Titre du tableau
+        label: Titre
         type: string
       - name: body
         label: Description
         type: rich-text
       - name: image
-        label: Photo du tableau
+        label: Image
         type: image
+      - name: dimensions
+        label: Dimensions
+        type: string
       - name: prix
-        label: Prix (en €)
+        label: Prix (en euros)
         type: number
       - name: date_created
         label: Date de création
@@ -35,13 +38,13 @@ content:
     path: src/content/articles
     fields:
       - name: title
-        label: Titre de l'article
+        label: Titre
         type: string
       - name: content
-        label: Contenu
+        label: Contenu textuel
         type: rich-text
       - name: image
-        label: Image de l'actualité
+        label: Image
         type: image
       - name: publish_at
         label: Date de publication
