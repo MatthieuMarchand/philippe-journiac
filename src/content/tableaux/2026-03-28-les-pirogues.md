@@ -1,6 +1,7 @@
 ---
 title: Les pirogues
 image: /images/téléchargement.jpg
+dimensions: 60x80cm
 prix: 750
 date_created: 2022-12-06
 ---
