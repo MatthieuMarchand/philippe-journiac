@@ -7,9 +7,7 @@ const articles = await getCollection("articles");
 ---
 
 <Layout>
-	<h6>HOMEPAGE</h6>
-
-	<ol>
+	<ul>
 		{
 			articles.map((item) => (
 				<li>
@@ -18,5 +16,5 @@ const articles = await getCollection("articles");
 				</li>
 			))
 		}
-	</ol>
+	</ul>
 </Layout>

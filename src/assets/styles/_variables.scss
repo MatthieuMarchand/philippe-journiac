@@ -1,0 +1,23 @@
+$color-black: #000;
+$color-gray: #737373;
+$color-white: #fff;
+
+$fontsize-primary: 18px;
+$fontsize-secondary: 24px;
+
+$fontface-medium: 'Inter_18pt-Medium';
+$fontface-semibold: 'Inter_24pt-SemiBold';
+$fontface-bold: 'Inter_28pt-Bold';
+
+@font-face {
+    font-family: Inter_18pt-Medium;
+    src: url("../fonts/Inter_18pt-Medium.ttf");
+}
+@font-face {
+    font-family: Inter_24pt-SemiBold;
+    src: url("../fonts/Inter_24pt-SemiBold.ttf");
+}
+@font-face {
+    font-family: Inter_28pt-Bold;
+    src: url("../fonts/Inter_28pt-Bold.ttf");
+}

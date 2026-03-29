@@ -1,3 +1,24 @@
 <header>
-    <h6>HEADER</h6>
+    <h2><a href="/">Philippe Journiac</a></h2>
+
+    <a href="/tableaux">Galerie</a>
 </header>
+
+<style lang="scss">
+    header {
+        padding: 2rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 * {
+            font-size: $fontsize-secondary;
+            font-family: $fontface-semibold;
+        }
+
+        a {
+            text-decoration: inherit;
+            color: inherit;
+        }
+    }
+</style>
