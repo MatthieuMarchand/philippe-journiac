@@ -1,6 +1,7 @@
 ---
 title: Vu sur la mer
 image: /images/Juan-Brufal.jpg
+dimensions: 60x80cm
 prix: 600
 date_created: 2021-09-04
 ---
