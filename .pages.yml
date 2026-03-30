@@ -1,5 +1,5 @@
 media:
-  input: src/content/images
+  input: public/content/images
   output: /images
 
 content:
