@@ -2,7 +2,7 @@
 title: Les Deux Bateaux
 image: /images/Exposition_de_Philippe_Journiac.jpg
 dimensions: 60 cm x 80 cm
-prix: 800
+price: 800
 date_created: 2021-05-17
 ---
 # First subheader

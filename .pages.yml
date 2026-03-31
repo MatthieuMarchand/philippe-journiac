@@ -21,7 +21,7 @@ content:
       - name: dimensions
         label: Dimensions
         type: string
-      - name: prix
+      - name: price
         label: Prix (en euros)
         type: number
       - name: date_created
@@ -32,15 +32,18 @@ content:
           format: yyyy-MM-dd
 
 # DEUXIÈME COLLECTION : LES ACTUALITÉS
-  - name: articles
+  - name: actualites
     label: Mes Actualités
     type: collection
-    path: src/content/articles
+    path: src/content/actualites
     fields:
       - name: title
         label: Titre
         type: string
       - name: content
+        label: Contenu textuel
+        type: rich-text
+      - name: body
         label: Contenu textuel
         type: rich-text
       - name: image

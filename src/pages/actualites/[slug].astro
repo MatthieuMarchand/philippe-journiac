@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content"; // Import de 'render' ici !
+
+export async function getStaticPaths() {
+  const actualites = await getCollection("actualites");
+  return actualites.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+  <main>
+    <p class="date">
+      {
+        entry.data.publish_at.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      }
+    </p>
+
+    <h1>{entry.data.title}</h1>
+
+    <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+
+    <section class="content">
+      <Content />
+    </section>
+  </main>
+</Layout>
+
+<style lang="scss">
+  main {
+    margin: 0 15rem;
+  }
+
+  p.date {
+    margin-top: 5rem;
+    text-align: center;
+    color: $color-gray;
+  }
+
+  h1 {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 64px;
+    font-family: $fontface-bold;
+  }
+
+  p.dimensions {
+    margin-top: 1rem;
+    text-align: center;
+    color: $color-gray;
+  }
+
+  img {
+    margin-top: 5rem;
+    width: 100%;
+  }
+
+  p.prix {
+    margin-top: 1rem;
+    text-align: end;
+  }
+
+  section {
+    margin-top: 8rem;
+    line-height: 1.5;
+  }
+</style>

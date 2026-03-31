@@ -1,7 +1,10 @@
 <header>
     <h2><a href="/">Philippe Journiac</a></h2>
 
-    <a href="/tableaux">Galerie</a>
+    <nav>
+        <a href="/tableaux">Galerie</a>
+        <a href="/actualites">Actualites</a>
+    </nav>
 </header>
 
 <style lang="scss">
@@ -19,6 +22,11 @@
         a {
             text-decoration: inherit;
             color: inherit;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
         }
     }
 </style>

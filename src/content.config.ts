@@ -8,20 +8,22 @@ const tableaux = defineCollection({
         title: z.string(),
         image: z.string(),
         dimensions: z.string(),
-        prix: z.number(),
+        price: z.number(),
         date_created: z.date(),
     }),
 });
 
-const articles = defineCollection({
-    loader: glob({ base: './src/content/articles', pattern: '**/*.md' }),
+const actualites = defineCollection({
+    loader: glob({ base: './src/content/actualites', pattern: '**/*.md' }),
     schema: z.object({
         title: z.string(),
+        image: z.string(),
         content: z.string(),
+        publish_at: z.date(),
     }),
 });
 
 export const collections = {
-    articles: articles,
+    actualites: actualites,
     tableaux: tableaux
 };
