@@ -1,20 +1,42 @@
 ---
+import LastNews from "../components/LastNews.astro";
 import Layout from "../layouts/Layout.astro";
-
-import { getCollection } from "astro:content";
-
-const articles = await getCollection("articles");
 ---
 
 <Layout>
-	<ul>
-		{
-			articles.map((item) => (
-				<li>
-					<p>{item.data.title}</p>
-					<p>{item.data.content}</p>
-				</li>
-			))
-		}
-	</ul>
+    <section id="hero">
+        <h1>
+            Philippe<br />
+            <span>Journiac</span>
+            Artiste peintre
+        </h1>
+    </section>
+
+    <main>
+        <LastNews />
+    </main>
 </Layout>
+
+<style lang="scss">
+    section#hero {
+        height: 100dvh;
+        background-image: url("/public/images/bateau-modifie\ 1.png");
+        background-size: cover;
+        background-position: bottom;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            text-align: center;
+            @include font-title(128);
+
+            span {
+                display: block;
+                width: fit-content;
+                margin: auto auto;
+                transform: translateX(50%);
+            }
+        }
+    }
+</style>
