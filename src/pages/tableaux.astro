@@ -10,10 +10,17 @@ const tableaux = await getCollection("tableaux");
     <main>
         <h1>Galerie</h1>
 
+        <div class="paintings_filter">
+            <button class="activated">tous les tableaux</button>
+            <button>à vendre</button>
+        </div>
+
         <section>
             <ul>
                 {
-                    tableaux.map((item) => (
+                    tableaux
+                        .sort((a, b) => b.data.date_created.getTime() - a.data.date_created.getTime())
+                        .map((item) => (
                         <li>
                             <a href=`/tableaux/${item.id}` >
                                 <article>
@@ -23,7 +30,7 @@ const tableaux = await getCollection("tableaux");
 
                                     <div class="infos">
                                         <h2>{item.data.title}</h2>
-                                        <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                                        <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric' })}</p>
                                     </div>
                                 </article>
                             </a>
@@ -35,11 +42,74 @@ const tableaux = await getCollection("tableaux");
     </main>
 </Layout>
 
+<script>
+const button_all_paintings = document.querySelector('div.paintings_filter button:nth-child(1)')
+const button_for_sale = document.querySelector('div.paintings_filter button:nth-child(2)')
+
+button_all_paintings?.addEventListener('click', () => {
+    button_for_sale?.classList.remove('activated');
+    button_all_paintings?.classList.add('activated');
+})
+
+button_for_sale?.addEventListener('click', () => {
+    button_all_paintings?.classList.remove('activated');
+    button_for_sale?.classList.add('activated');
+})
+</script>
+
 <style lang="scss">
     h1 {
         margin-top: 8rem;
-        font-size: 64px;
-        font-weight: bold;
+        @include font-title();
+    }
+
+    div.paintings_filter {
+        margin-top: 1rem;
+        width: fit-content;
+        border: solid 1px $color-primary;
+        display: flex;
+
+        button {
+            background: unset;
+            border: unset;
+            padding: .5rem;
+            color: $color-gray;
+            font-size: $fontsize-primary;
+            font-family: $fontface-medium;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: .5s;
+        }
+
+        button.activated {
+            color: $color-white;
+        }
+
+        button::before {
+            display: block;
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: $color-primary;
+            z-index: -1;
+            transition: .5s;
+        }
+
+        button:nth-child(1)::before {
+            transform: translateX(100%);
+        }
+        
+        button:nth-child(2)::before {
+            transform: translateX(-100%);
+        }
+
+        button.activated::before {
+            transform: translateX(0);
+        }
     }
 
     section {
@@ -48,39 +118,43 @@ const tableaux = await getCollection("tableaux");
         ul {
             display: flex;
             flex-wrap: wrap;
-            gap: 5rem 3rem;
+            gap: 4rem;
 
             li {
-                flex: 0 0 calc(50% - 1.5rem);
+                flex: 0 0 calc(50% - 2rem);
 
-                &:hover img {
-                    transform: scale(1.1);
-                }
-
-                div.image-container {
-                    width: 100%;
-                    aspect-ratio: 4 / 3;
-                    overflow: hidden;
-
-                    img {
+                article {
+                    background: $color-secondary;
+                    padding: 1rem;
+                    border-radius: .5rem;
+                    
+                    div.image-container {
                         width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        transition: transform 0.5s ease;
+                        aspect-ratio: 4 / 3;
+                        overflow: hidden;
+    
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.5s ease;
+                        }
+                    }
+    
+    
+                    div.infos {
+                        margin-top: 2rem;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+    
+                        h2 {
+                            font-family: $fontface-semibold;
+                            font-size: $fontsize-secondary;
+                        }
                     }
                 }
 
-
-                div.infos {
-                    margin-top: 2rem;
-                    display: flex;
-                    justify-content: space-between;
-
-                    h2 {
-                        font-family: $fontface-semibold;
-                        font-size: $fontsize-secondary;
-                    }
-                }
             }
         }
     }
