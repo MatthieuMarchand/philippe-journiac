@@ -122,11 +122,18 @@ button_for_sale?.addEventListener('click', () => {
 
             li {
                 flex: 0 0 calc(50% - 2rem);
+                box-sizing: border-box;
+                background: $color-secondary;
+                border: solid .25rem rgba($color-primary, 0);
+                border-radius: .5rem;
+                transition: .5s;
+
+                &:hover {
+                    border: solid .25rem rgba($color-primary, 1);
+                }
 
                 article {
-                    background: $color-secondary;
                     padding: 1rem;
-                    border-radius: .5rem;
                     
                     div.image-container {
                         width: 100%;
