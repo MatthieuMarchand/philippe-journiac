@@ -48,6 +48,10 @@ const actualitesRecentes = actualites
 			gap: 1rem;
 			margin-top: 1rem;
 
+            @include respond-to("tablet") {
+                flex-direction: column;
+            }
+
 			li {
 				padding: 1rem;
 				flex: 1;

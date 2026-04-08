@@ -13,6 +13,20 @@ import Layout from "../layouts/Layout.astro";
     </section>
 
     <main>
+        <section id="biography">
+            <div>
+                <h2>Biographie</h2>
+                
+                <p>
+                    Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget. Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget.
+                </p>
+                
+                <a href="/tableaux">Découvrir les tableaux</a>
+            </div>
+
+            <img src="/public/images/photo-biographie.png" alt="Photo de Philippe Journiac en train de peindre.">
+        </section>
+
         <LastNews />
     </main>
 </Layout>
@@ -20,7 +34,7 @@ import Layout from "../layouts/Layout.astro";
 <style lang="scss">
     section#hero {
         height: 90dvh;
-        background-image: url("/public/images/bateau-modifie\ 1.png");
+        background-image: url("/public/images/tableau-hero.png");
         background-size: cover;
         background-position: bottom;
         display: flex;
@@ -29,13 +43,56 @@ import Layout from "../layouts/Layout.astro";
 
         h1 {
             text-align: center;
-            @include font-title(128);
+            @include font-title();
+            font-size: clamp(16px, 15vw, 128px);
 
             span {
                 display: block;
                 width: fit-content;
                 margin: auto auto;
                 transform: translateX(50%);
+            }
+        }
+    }
+
+    section#biography {
+        margin-top: 5rem;
+        display: flex;
+        gap: 6rem;
+
+        @include respond-to("tablet") {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        div {
+            h2 {
+                @include font-title();
+            }
+
+            p {
+                margin-top: 1rem;
+            }
+
+            a {
+                display: block;
+                width: fit-content;
+                margin-top: 2rem;
+                padding: 1rem;
+                background: $color-primary;
+                color: $color-white;
+                font-family: $fontface-medium;
+                font-size: 20px;
+            }
+        }
+
+        img {
+            width: 100% * 5 / 12;
+            border-radius: 1rem;
+            object-fit: cover;
+
+            @include respond-to("tablet") {
+                width: unset;
             }
         }
     }
