@@ -1,6 +1,9 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+
+import '../assets/styles/_reset.scss';
+import '../assets/styles/style.scss';
 ---
 
 <!doctype html>
@@ -15,8 +18,6 @@ import Footer from "../components/Footer.astro";
 		<!-- todo: c'est quoi ça ? "Astro.generator" -->
 		<title>Philippe Journiac</title>
 		<!-- todo: titre dynamique avec l'endroit de la page (exemple: "Accueil | Philippe Journiac") (ajout d'un params je crois) -->
-		 <link rel="stylesheet" href="/src/assets/styles/_reset.scss">
-		 <link rel="stylesheet" href="/src/assets/styles/style.scss">
 	</head>
 	<body>
 		<Header />
