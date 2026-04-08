@@ -10,6 +10,14 @@ body {
 
 main {
     margin: 0 8rem;
+
+    @include respond-to("tablet") {
+        margin: 0 4rem;
+    }
+
+    @include respond-to("mobile") {
+        margin: 0 2rem;
+    }
 }
 
 a {

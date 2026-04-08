@@ -21,6 +21,14 @@
         z-index: 1;
         transition: background .5s;
 
+        @include respond-to("tablet") {
+            padding: 2rem 4rem;
+        }
+        
+        @include respond-to("mobile") {
+            padding: 1rem 2rem;
+        }
+
         &.scrolled {
             background: $color-white;
         }
@@ -35,6 +43,10 @@
             gap: 2rem;
             color: $color-primary;
             font-family: $fontface-medium;
+
+            @include respond-to("tablet") {
+                display: none;
+            }
 
             .btn-contact {
                 background: $color-primary;
