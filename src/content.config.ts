@@ -17,8 +17,8 @@ const actualites = defineCollection({
     loader: glob({ base: './src/content/actualites', pattern: '**/*.md' }),
     schema: z.object({
         title: z.string(),
+        lede: z.string(),
         image: z.string(),
-        content: z.string(),
         publish_at: z.date(),
     }),
 });
