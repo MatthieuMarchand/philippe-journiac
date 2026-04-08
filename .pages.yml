@@ -40,6 +40,9 @@ content:
       - name: title
         label: Titre
         type: string
+      - name: lede
+        label: Chapeau
+        type: text
       - name: body
         label: Contenu textuel
         type: rich-text
