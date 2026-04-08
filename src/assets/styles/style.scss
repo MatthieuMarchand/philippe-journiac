@@ -1,0 +1,31 @@
+html {
+    background: $color-white;
+}
+
+body {
+    font-size: 18px;
+    font-family: $fontface-regular;
+    color: $color-black;
+}
+
+main {
+    margin: 0 8rem;
+
+    @include respond-to("tablet") {
+        margin: 0 4rem;
+    }
+
+    @include respond-to("mobile") {
+        margin: 0 2rem;
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+section.content * {
+    all: revert;
+    font-family: $fontface-medium;
+}

@@ -3,30 +3,70 @@
 
     <nav>
         <a href="/tableaux">Galerie</a>
-        <a href="/actualites">Actualites</a>
+        <a href="/actualites">Actualités</a>
+        <a class="btn-contact" href="#">Contact</a>
     </nav>
 </header>
 
 <style lang="scss">
     header {
-        padding: 2rem 4rem;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 2rem 8rem;
+        box-sizing: border-box;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        z-index: 1;
+        transition: background .5s;
 
-        h2 * {
-            font-size: $fontsize-secondary;
-            font-family: $fontface-semibold;
+        @include respond-to("tablet") {
+            padding: 2rem 4rem;
+        }
+        
+        @include respond-to("mobile") {
+            padding: 1rem 2rem;
         }
 
-        a {
-            text-decoration: inherit;
-            color: inherit;
+        &.scrolled {
+            background: $color-white;
+        }
+
+        h2 * {
+			@include font-title(24);
         }
 
         nav {
             display: flex;
+            align-items: center;
             gap: 2rem;
+            color: $color-primary;
+            font-family: $fontface-medium;
+
+            @include respond-to("tablet") {
+                display: none;
+            }
+
+            .btn-contact {
+                background: $color-primary;
+                color: $color-white;
+                padding: .5rem;
+            }
         }
     }
 </style>
+
+<script>
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+    if (!header) return;
+
+    if (window.scrollY > 0) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>

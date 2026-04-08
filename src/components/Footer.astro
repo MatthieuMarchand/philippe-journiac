@@ -1,16 +1,40 @@
 <footer>
-    <h2>Philippe Journiac</h2>
+    <nav>
+        <h2>Philippe Journiac</h2>
+        <a href="#">Mentions légales</a>
+        <a href="#">Contact</a>
+    </nav>
 </footer>
 
 <style lang="scss">
     footer {
-        padding: 2rem 4rem;
-        margin-top: 5rem;
-        border-top: solid 1px #E6E6E6;
+        padding: 4rem 8rem;
+        margin-top: 10rem;
+        border-top: solid 2px $color-primary;
 
-        h2 {
-            font-size: $fontsize-secondary;
-            font-family: $fontface-semibold;;
+        @include respond-to("tablet") {
+            padding: 4rem 4rem;
+        }
+        
+        @include respond-to("mobile") {
+            padding: 2rem 2rem;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+
+            h2 {
+                font-size: 20px;
+                font-family: $fontface-semibold;
+            }
+
+            a {
+                font-size: 16px;
+                font-family: $fontface-medium;
+                color: $color-gray;
+            }
         }
     }
 </style>

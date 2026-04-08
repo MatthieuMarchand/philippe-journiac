@@ -1,14 +1,30 @@
-$color-black: #000;
-$color-gray: #737373;
-$color-white: #fff;
+//* ----------------------
+//* -----<< COLORS >>-----
+//* ----------------------
+
+$color-white: #FFFCFB;
+$color-secondary: #FFEAE6;
+$color-primary: #DC4322;
+$color-gray: #856962;
+$color-black: #44150B;
+
+//* -------------------------
+//* -----<< FONT FACE >>-----
+//* -------------------------
 
 $fontsize-primary: 18px;
 $fontsize-secondary: 24px;
 
+$fontface-regular: 'Inter_18pt-Regular';
 $fontface-medium: 'Inter_18pt-Medium';
 $fontface-semibold: 'Inter_24pt-SemiBold';
 $fontface-bold: 'Inter_28pt-Bold';
+$fontface-title: 'InstrumentSerif-Italic';
 
+@font-face {
+    font-family: Inter_18pt-Regular;
+    src: url("../fonts/Inter_18pt-Regular.ttf");
+}
 @font-face {
     font-family: Inter_18pt-Medium;
     src: url("../fonts/Inter_18pt-Medium.ttf");
@@ -20,4 +36,39 @@ $fontface-bold: 'Inter_28pt-Bold';
 @font-face {
     font-family: Inter_28pt-Bold;
     src: url("../fonts/Inter_28pt-Bold.ttf");
+}
+@font-face {
+    font-family: InstrumentSerif-Italic;
+    src: url("../fonts/InstrumentSerif-Italic.ttf");
+}
+
+@mixin font-title($font-size: 64) {
+  font-size: #{$font-size}px;
+  font-family: $fontface-title;
+  color: $color-primary;
+}
+
+//* ---------------------------
+//* -----<< MEDIA QUERY >>-----
+//* ---------------------------
+
+$breakpoints: (
+  "mobile": 480px,
+  "tablet": 768px,
+  "desktop": 1024px,
+  "large": 1440px
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } 
+
+  @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
 }

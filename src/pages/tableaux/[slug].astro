@@ -33,7 +33,7 @@ const { Content } = await render(entry);
 
     <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
 
-    <p class="prix">{entry.data.prix} euros</p>
+    <p class="prix">{entry.data.price} euros</p>
 
     <section class="content">
       <Content />
@@ -42,10 +42,6 @@ const { Content } = await render(entry);
 </Layout>
 
 <style lang="scss">
-  main {
-    margin: 0 15rem;
-  }
-
   p.date {
     margin-top: 5rem;
     text-align: center;
