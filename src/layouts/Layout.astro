@@ -1,9 +1,11 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import SmoothScroll from '../components/SmoothScroll.astro';
 
 import '../assets/styles/_reset.scss';
 import '../assets/styles/style.scss';
+import '../assets/styles/lenis.scss';
 
 const { pageTitle } = Astro.props;
 const title = pageTitle ? pageTitle + " | Philippe Journiac" : "Philippe Journiac";
@@ -23,6 +25,8 @@ const title = pageTitle ? pageTitle + " | Philippe Journiac" : "Philippe Journia
 		<!-- todo: titre dynamique avec l'endroit de la page (exemple: "Accueil | Philippe Journiac") (ajout d'un params je crois) -->
 	</head>
 	<body>
+		<SmoothScroll />
+		
 		<Header />
 
 		<slot />
