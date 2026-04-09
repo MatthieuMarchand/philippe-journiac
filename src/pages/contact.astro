@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout pageTitle="Contact">
+    <main>
+        <h1>Contact</h1>
+        
+        <p>
+            Vous souhaitez faire une proposition d’achat ou demander des renseignements ? Contactez Philippe par mail ou via les réseaux sociaux.
+        </p>
+        
+        <ul>
+            <li>
+                <a href="#" target="_blank">
+                    <img src="/public/icons/instagram-brands-solid-full.svg" alt="Icone de Instagram">
+                    @journiacphilippe
+                </a>
+            </li>
+
+            <li>
+                <a href="#" target="_blank">
+                    <img src="/public/icons/facebook-brands-solid-full.svg" alt="Icone de Facebook">
+                    @journiacphilippe
+                </a>
+            </li>
+
+            <li>
+                <a href="#" target="_blank">
+                    <img src="/public/icons/envelope-regular-full.svg" alt="Icone d'Email">
+                    philippe.journiac@email.com
+                </a>
+            </li>
+
+        </ul>
+    </main>
+</Layout>
+
+<style lang="scss">
+    h1 {
+        margin-top: 8rem;
+        @include font-title();
+    }
+
+    p {
+        margin-top: 4rem;
+    }
+
+    ul {
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        li a {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            width: fit-content;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            img {
+                width: 2rem;
+            }
+        }
+    }
+</style>
