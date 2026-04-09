@@ -17,9 +17,12 @@ const { Content } = await render(entry);
 
 <Layout pageTitle={entry.data.title}>
   <main>
+    <h1>{entry.data.title}</h1>
+
     <p class="date">
+      Publié le
       {
-        entry.data.publish_at.toLocaleDateString(undefined, {
+        entry.data.publish_at.toLocaleDateString("fr-FR", {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -27,9 +30,11 @@ const { Content } = await render(entry);
       }
     </p>
 
-    <h1>{entry.data.title}</h1>
+    <p class="lede">{entry.data.lede}</p>
 
-    <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+    <div class="image-container">
+      <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+    </div>
 
     <section class="content">
       <Content />
@@ -38,37 +43,37 @@ const { Content } = await render(entry);
 </Layout>
 
 <style lang="scss">
-  p.date {
-    margin-top: 5rem;
-    text-align: center;
-    color: $color-gray;
-  }
-
   h1 {
-    margin-top: 2rem;
-    text-align: center;
-    font-size: 64px;
-    font-family: $fontface-bold;
-  }
-
-  p.dimensions {
-    margin-top: 1rem;
-    text-align: center;
-    color: $color-gray;
-  }
-
-  img {
-    margin-top: 5rem;
-    width: 100%;
-  }
-
-  p.prix {
-    margin-top: 1rem;
-    text-align: end;
-  }
-
-  section {
     margin-top: 8rem;
-    line-height: 1.5;
+    @include font-title();
+  }
+
+  p.date, p.lede {
+    color: $color-gray;
+    line-height: 1.25;
+  }
+
+  p.date {
+    margin-top: 1rem;
+  }
+
+  p.lede {
+    margin-top: 2rem;
+  }
+
+  div.image-container {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-height: 30rem;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  section.content {
+    margin-top: 3rem;
   }
 </style>

@@ -25,7 +25,16 @@ a {
     text-decoration: inherit;
 }
 
-section.content * {
-    all: revert;
-    font-family: $fontface-medium;
+section.content {
+    color: $color-gray;
+
+    & * {
+        all: revert;
+        font-family: $fontface-medium;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $fontface-title !important;
+        color: $color-primary;
+    }
 }
