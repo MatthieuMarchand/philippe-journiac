@@ -43,18 +43,20 @@ const tableaux = await getCollection("tableaux");
 </Layout>
 
 <script>
-const button_all_paintings = document.querySelector('div.paintings_filter button:nth-child(1)')
-const button_for_sale = document.querySelector('div.paintings_filter button:nth-child(2)')
-
-button_all_paintings?.addEventListener('click', () => {
-    button_for_sale?.classList.remove('activated');
-    button_all_paintings?.classList.add('activated');
-})
-
-button_for_sale?.addEventListener('click', () => {
-    button_all_paintings?.classList.remove('activated');
-    button_for_sale?.classList.add('activated');
-})
+    document.addEventListener('astro:page-load', () => {
+        const button_all_paintings = document.querySelector('div.paintings_filter button:nth-child(1)')
+        const button_for_sale = document.querySelector('div.paintings_filter button:nth-child(2)')
+        
+        button_all_paintings?.addEventListener('click', () => {
+            button_for_sale?.classList.remove('activated');
+            button_all_paintings?.classList.add('activated');
+        })
+        
+        button_for_sale?.addEventListener('click', () => {
+            button_all_paintings?.classList.remove('activated');
+            button_for_sale?.classList.add('activated');
+        })
+    });
 </script>
 
 <style lang="scss">
