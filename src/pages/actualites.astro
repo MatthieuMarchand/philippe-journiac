@@ -60,10 +60,10 @@ const actualites = await getCollection("actualites");
                 }
 
                 a {
-                    width: 100% * 6 / 12;
+                    width: calc(100% * 6 / 12);
 
                     @include respond-to("desktop") {
-                        width: 100% * 8 / 12;
+                        width: calc(100% * 8 / 12);
                     }
 
                     @include respond-to("tablet") {
