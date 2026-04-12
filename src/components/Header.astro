@@ -6,7 +6,36 @@
         <a href="/actualites">Actualités</a>
         <a class="btn-contact" href="/contact">Contact</a>
     </nav>
+
+    <button>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </button>
 </header>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const header = document.querySelector('header');
+        const button = document.querySelector('button');
+        
+        window.addEventListener('scroll', () => {
+            if (!header) return;
+            
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        button?.addEventListener('click', () => {
+            button.classList.toggle('actived');
+        });
+    });
+</script>
 
 <style lang="scss">
     header {
@@ -54,21 +83,56 @@
                 padding: .5rem;
             }
         }
+
+        button {
+            border: unset;
+            background: unset;
+            padding: .25rem;
+            cursor: pointer;
+
+            &.actived {
+                & > div {
+                    div:nth-child(1) {
+                        top: calc(50% - 1px);
+                        transform: rotateZ(45deg);
+                    }
+                    
+                    div:nth-child(2) {
+                        opacity: 0;
+                    }
+                    
+                    div:nth-child(3) {
+                        bottom: calc(50% - 1px);
+                        transform: rotateZ(-45deg);
+                    }
+                }
+            }
+            
+            & > div {
+                position: relative;
+                width: 2rem;
+                height: 1.5rem;
+                
+                div {
+                    position: absolute;
+                    height: 2px;
+                    width: 100%;
+                    background: $color-primary;
+                    transition: .5s ease;
+                    
+                    &:nth-child(1) {
+                        top: 0;
+                    }
+                    
+                    &:nth-child(2) {
+                        top: calc(50% - 1px);
+                    }
+                    
+                    &:nth-child(3) {
+                        bottom: 0;
+                    }
+                }
+            }
+        }
     }
 </style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            if (!header) return;
-            
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    });
-</script>
