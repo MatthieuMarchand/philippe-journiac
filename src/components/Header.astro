@@ -16,10 +16,19 @@
     </button>
 </header>
 
+<section>
+    <nav>
+        <a href="/tableaux">Galerie</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</section>
+
 <script>
     document.addEventListener('astro:page-load', () => {
         const header = document.querySelector('header');
-        const button = document.querySelector('button');
+        const buttonBurger = document.querySelector('button');
+        const sectionBurger = document.querySelector('section');
         
         window.addEventListener('scroll', () => {
             if (!header) return;
@@ -31,8 +40,14 @@
             }
         });
 
-        button?.addEventListener('click', () => {
-            button.classList.toggle('actived');
+        buttonBurger?.addEventListener('click', () => {
+            if (buttonBurger.classList.contains('actived')) {
+                buttonBurger.classList.remove('actived');
+                sectionBurger?.classList.remove('actived');
+            } else {
+                buttonBurger.classList.add('actived');
+                sectionBurger?.classList.add('actived');
+            }
         });
     });
 </script>
@@ -47,7 +62,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 1;
+        z-index: 2;
         transition: background .5s;
 
         @include respond-to("tablet") {
@@ -89,6 +104,11 @@
             background: unset;
             padding: .25rem;
             cursor: pointer;
+            display: none;
+
+            @include respond-to("tablet") {
+                display: unset;
+            }
 
             &.actived {
                 & > div {
@@ -132,6 +152,34 @@
                         bottom: 0;
                     }
                 }
+            }
+        }
+    }
+
+    section {
+        height: 100dvh;
+        width: 100%;
+        background: $color-white;
+        position: fixed;
+        z-index: 1;
+        opacity: 0;
+        transition: .5s ease;
+
+        &.actived {
+            opacity: 1;
+        }
+
+        nav {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+
+            a {
+                @include font-title(24);
             }
         }
     }
