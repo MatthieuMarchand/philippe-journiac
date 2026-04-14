@@ -81,7 +81,7 @@ const tableaux = await getCollection("tableaux");
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: .5s;
+            @extend %transition;
         }
 
         button.activated {
@@ -98,7 +98,7 @@ const tableaux = await getCollection("tableaux");
             height: 100%;
             background: $color-primary;
             z-index: -1;
-            transition: .5s;
+            @extend %transition;
         }
 
         button:nth-child(1)::before {
@@ -128,7 +128,7 @@ const tableaux = await getCollection("tableaux");
                 background: $color-secondary;
                 border: solid .25rem rgba($color-primary, 0);
                 border-radius: .5rem;
-                transition: .5s;
+                @extend %transition;
 
                 &:hover {
                     border: solid .25rem rgba($color-primary, 1);
@@ -146,7 +146,7 @@ const tableaux = await getCollection("tableaux");
                             width: 100%;
                             height: 100%;
                             object-fit: cover;
-                            transition: transform 0.5s ease;
+                            @extend %transition;
                         }
                     }
     

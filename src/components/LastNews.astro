@@ -62,7 +62,7 @@ const actualitesRecentes = actualites
 				background: $color-secondary;
 				border-radius: 1rem;
                 border: solid .25rem rgba($color-primary, 0);
-                transition: .5s;
+                @extend %transition;
 
                 &:hover {
                     border: solid .25rem rgba($color-primary, 1);
@@ -112,7 +112,7 @@ const actualitesRecentes = actualites
                             
                             span {
                                 opacity: 0;
-                                transition: 0.5s;
+                                @extend %transition;
                             }
                         }
                     }
