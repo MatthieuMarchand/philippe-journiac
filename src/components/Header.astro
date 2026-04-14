@@ -6,7 +6,55 @@
         <a href="/actualites">Actualités</a>
         <a class="btn-contact" href="/contact">Contact</a>
     </nav>
+
+    <button>
+        <div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </button>
 </header>
+
+<section>
+    <nav>
+        <a href="/tableaux">Galerie</a>
+        <a href="/actualites">Actualités</a>
+        <a href="/contact">Contact</a>
+    </nav>
+</section>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const header = document.querySelector('header');
+        const buttonBurger = document.querySelector('button');
+        const sectionBurger = document.querySelector('section');
+        
+        window.addEventListener('scroll', () => {
+            if (!header) return;
+            
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        buttonBurger?.addEventListener('click', () => {
+            if (!sectionBurger) {
+                return;
+            }
+
+            if (buttonBurger.classList.contains('actived')) {
+                buttonBurger.classList.remove('actived');
+                sectionBurger.classList.remove('actived');
+            } else {
+                buttonBurger.classList.add('actived');
+                sectionBurger.classList.add('actived');
+            }
+        });
+    });
+</script>
 
 <style lang="scss">
     header {
@@ -18,8 +66,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 1;
-        transition: background .5s;
+        z-index: 2;
+        @extend %transition;
 
         @include respond-to("tablet") {
             padding: 2rem 4rem;
@@ -54,21 +102,93 @@
                 padding: .5rem;
             }
         }
+
+        button {
+            border: unset;
+            background: unset;
+            padding: .25rem;
+            cursor: pointer;
+            display: none;
+
+            @include respond-to("tablet") {
+                display: unset;
+            }
+
+            &.actived {
+                & > div {
+                    div:nth-child(1) {
+                        top: calc(50% - 1px);
+                        transform: rotateZ(45deg);
+                    }
+                    
+                    div:nth-child(2) {
+                        opacity: 0;
+                    }
+                    
+                    div:nth-child(3) {
+                        bottom: calc(50% - 1px);
+                        transform: rotateZ(-45deg);
+                    }
+                }
+            }
+            
+            & > div {
+                position: relative;
+                width: 2rem;
+                height: 1.5rem;
+                
+                div {
+                    position: absolute;
+                    height: 2px;
+                    width: 100%;
+                    background: $color-primary;
+                    @extend %transition;
+                    
+                    &:nth-child(1) {
+                        top: 0;
+                    }
+                    
+                    &:nth-child(2) {
+                        top: calc(50% - 1px);
+                    }
+                    
+                    &:nth-child(3) {
+                        bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    section {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100dvh;
+        width: 100%;
+        background: $color-white;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        @extend %transition;
+        
+        &.actived {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        nav {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+
+            a {
+                @include font-title(24);
+            }
+        }
     }
 </style>
-
-<script>
-    document.addEventListener('astro:page-load', () => {
-        const header = document.querySelector('header');
-        
-        window.addEventListener('scroll', () => {
-            if (!header) return;
-            
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    });
-</script>

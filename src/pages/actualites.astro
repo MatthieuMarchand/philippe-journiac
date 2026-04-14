@@ -83,7 +83,7 @@ const actualites = await getCollection("actualites");
                         flex-direction: column;
                         gap: .5rem;
                         border: solid .25rem rgba($color-primary, 0);
-                        transition: .5s;
+                        @extend %transition;
 
                         h2 {
                             font-family: $fontface-semibold;
