@@ -22,7 +22,7 @@ const tableaux = await getCollection("tableaux");
                         .sort((a, b) => b.data.date_created.getTime() - a.data.date_created.getTime())
                         .map((item) => (
                         <li>
-                            <a href=`/tableaux/${item.id}` >
+                            <a href=`/galerie/${item.id}` >
                                 <article>
                                     <div class="image-container">
                                         <img src=`/content${item.data.image}` alt=`${item.data.title}` >
