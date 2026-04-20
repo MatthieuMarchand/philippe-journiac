@@ -20,7 +20,8 @@ content:
         type: string
       - name: for_sale
         label: À vendre ?
-        type: bool
+        type: boolean
+        default: true
       - name: price
         label: Prix (en euros)
         type: number
