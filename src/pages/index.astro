@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <section id="hero">
+    <section id="hero" slot="hero">
         <h1>
             Philippe<br />
             <span>Journiac</span>
@@ -12,24 +12,45 @@ import Layout from "../layouts/Layout.astro";
         </h1>
     </section>
 
-    <main>
-        <section id="biography">
-            <div>
-                <h2>Biographie</h2>
-                
-                <p>
-                    Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget. Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget.
-                </p>
-                
-                <a href="/tableaux">Découvrir les tableaux</a>
-            </div>
+    <section id="biography">
+        <div>
+            <h2>Biographie</h2>
+            
+            <p>
+                Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget. Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget.
+            </p>
+            
+            <a href="/tableaux">Découvrir les tableaux</a>
+        </div>
 
-            <img src="/public/images/photo-biographie.png" alt="Photo de Philippe Journiac en train de peindre.">
-        </section>
+        <img src="/public/images/photo-biographie.png" alt="Photo de Philippe Journiac en train de peindre.">
+    </section>
 
-        <LastNews />
-    </main>
+    <LastNews />
 </Layout>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const header = document.querySelector('header');
+        const sectionHero = document.getElementById('hero');
+
+        if (header && sectionHero) {
+            header.style.transition = 'unset';
+            header.style.marginBottom = `-${header.offsetHeight}px`;
+            header.style.background = 'unset';
+            
+            window.addEventListener('scroll', () => {
+                header.style.transition = '0.5s ease';
+
+                if (window.scrollY > 200) {
+                    header.style.background = '#FFFCFB';
+                } else {
+                    header.style.background = 'unset';
+                }
+            }); 
+        }
+    });
+</script>
 
 <style lang="scss">
     section#hero {

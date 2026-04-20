@@ -1,8 +1,9 @@
 ---
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import SmoothScroll from '../components/SmoothScroll.astro';
-import { ClientRouter } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import Footer from "../components/Footer.astro";
+import { ClientRouter, fade } from "astro:transitions";
 
 import '../assets/styles/_reset.scss';
 import '../assets/styles/style.scss';
@@ -10,8 +11,6 @@ import '../assets/styles/lenis.scss';
 
 const { pageTitle } = Astro.props;
 const title = pageTitle ? pageTitle + " | Philippe Journiac" : "Philippe Journiac";
-
-import { fade } from "astro:transitions";
 ---
 
 <!doctype html>
@@ -31,9 +30,15 @@ import { fade } from "astro:transitions";
 	<body>
 		<SmoothScroll />
 		
-		<Header transition:persist />
+		<Header/>
 
-		<slot />
+		<slot name="hero" />
+		
+		<main>
+			<Breadcrumbs />
+			
+			<slot />
+		</main>
 
 		<Footer />
 	</body>

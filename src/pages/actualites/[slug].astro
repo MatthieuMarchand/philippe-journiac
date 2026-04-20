@@ -16,30 +16,28 @@ const { Content } = await render(entry);
 ---
 
 <Layout pageTitle={entry.data.title}>
-  <main>
-    <h1>{entry.data.title}</h1>
+  <h1>{entry.data.title}</h1>
 
-    <p class="date">
-      Publié le
-      {
-        entry.data.publish_at.toLocaleDateString("fr-FR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      }
-    </p>
+  <p class="date">
+    Publié le
+    {
+      entry.data.publish_at.toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    }
+  </p>
 
-    <p class="lede">{entry.data.lede}</p>
+  <p class="lede">{entry.data.lede}</p>
 
-    <div class="image-container">
-      <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
-    </div>
+  <div class="image-container">
+    <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+  </div>
 
-    <section class="content">
-      <Content />
-    </section>
-  </main>
+  <section class="content">
+    <Content />
+  </section>
 </Layout>
 
 <style lang="scss">

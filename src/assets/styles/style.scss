@@ -1,33 +1,37 @@
 html {
     background: $color-white;
-}
+    
+    body {
+        font-size: 18px;
+        font-family: $fontface-regular;
+        color: $color-black;
+        line-height: 1.35;
+    
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1;
+        }
 
-body {
-    font-size: 18px;
-    font-family: $fontface-regular;
-    color: $color-black;
-    line-height: 1.35;
-
-    h1, h2, h3, h4, h5, h6 {
-        line-height: 1;
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
     }
-}
-
-main {
-    margin: 0 8rem;
-
-    @include respond-to("tablet") {
-        margin: 0 4rem;
+    
+    main {
+        margin: 0 8rem;
+    
+        @include respond-to("tablet") {
+            margin: 0 4rem;
+        }
+    
+        @include respond-to("mobile") {
+            margin: 0 2rem;
+        }
+        
+        h1 {
+            margin-top: 6rem;
+        }
     }
-
-    @include respond-to("mobile") {
-        margin: 0 2rem;
-    }
-}
-
-a {
-    color: inherit;
-    text-decoration: inherit;
 }
 
 section.content {

@@ -12,15 +12,15 @@ content:
       - name: title
         label: Titre
         type: string
-      - name: body
-        label: Description
-        type: rich-text
       - name: image
         label: Image
         type: image
       - name: dimensions
         label: Dimensions
         type: string
+      - name: for_sale
+        label: À vendre ?
+        type: bool
       - name: price
         label: Prix (en euros)
         type: number

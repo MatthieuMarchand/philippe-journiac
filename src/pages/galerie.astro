@@ -7,39 +7,37 @@ const tableaux = await getCollection("tableaux");
 ---
 
 <Layout pageTitle="Galerie">
-    <main>
-        <h1>Galerie</h1>
+    <h1>Galerie</h1>
 
-        <div class="paintings_filter">
-            <button class="activated">tous les tableaux</button>
-            <button>à vendre</button>
-        </div>
+    <div class="paintings_filter">
+        <button class="activated">Tous les tableaux</button>
+        <button>Disponibles à l'achat</button>
+    </div>
 
-        <section>
-            <ul>
-                {
-                    tableaux
-                        .sort((a, b) => b.data.date_created.getTime() - a.data.date_created.getTime())
-                        .map((item) => (
-                        <li>
-                            <a href=`/galerie/${item.id}` >
-                                <article>
-                                    <div class="image-container">
-                                        <img src=`/content${item.data.image}` alt=`${item.data.title}` >
-                                    </div>
+    <section>
+        <ul>
+            {
+                tableaux
+                    .sort((a, b) => b.data.date_created.getTime() - a.data.date_created.getTime())
+                    .map((item) => (
+                    <li>
+                        <a href=`/galerie/${item.id}` >
+                            <article>
+                                <div class="image-container">
+                                    <img src=`/content${item.data.image}` alt=`${item.data.title}` >
+                                </div>
 
-                                    <div class="infos">
-                                        <h2>{item.data.title}</h2>
-                                        <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric' })}</p>
-                                    </div>
-                                </article>
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
-        </section>
-    </main>
+                                <div class="infos">
+                                    <h2>{item.data.title}</h2>
+                                    <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric' })}</p>
+                                </div>
+                            </article>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
 </Layout>
 
 <script>
@@ -61,7 +59,6 @@ const tableaux = await getCollection("tableaux");
 
 <style lang="scss">
     h1 {
-        margin-top: 8rem;
         @include font-title();
     }
 
