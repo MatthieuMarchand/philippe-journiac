@@ -18,14 +18,19 @@ html {
     }
     
     main {
-        margin: 0 8rem;
-    
+        max-width: 100rem;
+        margin: auto;
+
         @include respond-to("tablet") {
             margin: 0 4rem;
         }
     
         @include respond-to("mobile") {
             margin: 0 2rem;
+        }
+
+        @include respond-to("desktop") {
+            margin: 0 8rem;
         }
         
         h1 {
