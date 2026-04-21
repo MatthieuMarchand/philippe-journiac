@@ -20,7 +20,7 @@ const tableaux = await getCollection("tableaux");
                 tableaux
                     .sort((a, b) => b.data.date_created.getTime() - a.data.date_created.getTime())
                     .map((item) => (
-                    <li>
+                    <li class="painting-item" data-for-sale={item.data.for_sale ? "true" : "false"}>
                         <a href=`/galerie/${item.id}` >
                             <article>
                                 <div class="image-container">
@@ -28,8 +28,19 @@ const tableaux = await getCollection("tableaux");
                                 </div>
 
                                 <div class="infos">
-                                    <h2>{item.data.title}</h2>
-                                    <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric' })}</p>
+                                    <div>
+                                        <h2>{item.data.title}</h2>
+                                        <p>{item.data.date_created.toLocaleDateString(undefined, { year: 'numeric' })}</p>
+                                    </div>
+
+                                    {
+                                        item.data.for_sale ? (
+                                            <p class="for-sale">À vendre</p>
+                                        ) : (
+                                            <p>Vendu</p>
+                                        )
+                                    }
+
                                 </div>
                             </article>
                         </a>
@@ -44,15 +55,28 @@ const tableaux = await getCollection("tableaux");
     document.addEventListener('astro:page-load', () => {
         const button_all_paintings = document.querySelector('div.paintings_filter button:nth-child(1)')
         const button_for_sale = document.querySelector('div.paintings_filter button:nth-child(2)')
-        
+        const painting_items = document.querySelectorAll<HTMLElement>('.painting-item');
+
         button_all_paintings?.addEventListener('click', () => {
             button_for_sale?.classList.remove('activated');
             button_all_paintings?.classList.add('activated');
+            
+            painting_items.forEach(item => {
+                item.style.display = '';
+            });
         })
         
         button_for_sale?.addEventListener('click', () => {
             button_all_paintings?.classList.remove('activated');
             button_for_sale?.classList.add('activated');
+
+            painting_items.forEach(item => {
+                if (item.getAttribute('data-for-sale') === 'true') {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         })
     });
 </script>
@@ -149,18 +173,28 @@ const tableaux = await getCollection("tableaux");
     
     
                     div.infos {
-                        margin-top: 2rem;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-    
-                        h2 {
-                            font-family: $fontface-semibold;
-                            font-size: $fontsize-secondary;
+                        div {
+                            margin-top: 2rem;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            
+                            h2 {
+                                font-family: $fontface-semibold;
+                                font-size: $fontsize-secondary;
+                            }
+                            
+                        }
+
+                        & > p {
+                            text-align: end;
+
+                            &.for-sale {
+                                color: $color-primary;
+                            }
                         }
                     }
                 }
-
             }
         }
     }

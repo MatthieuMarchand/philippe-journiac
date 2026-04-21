@@ -8,6 +8,7 @@ const tableaux = defineCollection({
         title: z.string(),
         image: z.string(),
         dimensions: z.string(),
+        for_sale: z.boolean(),
         price: z.number(),
         date_created: z.date(),
     }),
