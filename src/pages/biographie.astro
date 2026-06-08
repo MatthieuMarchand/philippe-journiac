@@ -143,6 +143,7 @@ const groupedDistinctions = distinctions.reduce(
         position: sticky;
         top: 120px;
         height: fit-content;
+
         @include respond-to("desktop") {
             display: none;
         }
@@ -152,6 +153,7 @@ const groupedDistinctions = distinctions.reduce(
             font-size: 48px;
             margin: 0px 0px;
             color: $color-secondary;
+            @extend %transition;
         }
         .active {
             color: $color-primary;
