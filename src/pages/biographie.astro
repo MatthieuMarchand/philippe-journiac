@@ -44,28 +44,42 @@ const groupedDistinctions = distinctions.reduce(
                 sur motif et en atelier, j’infuse chaque création de passion et
                 d’âme sans chercher à démontrer, mais juste à exposer le réel.
             </p>
-            <h2 id="distinctions">Distinctions</h2>
-            {
-                Object.entries(groupedDistinctions)
-                    .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-                    .map(([year, items]) => (
-                        <div>
-                            <h3>{year}</h3>
-                            <ul>
-                                {items.map((item) => (
-                                    <li>
-                                        {item.data.type} - {item.data.location}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))
-            }
+            <div id="distinctions">
+                <h2>Distinctions</h2>
+                {
+                    Object.entries(groupedDistinctions)
+                        .sort(
+                            ([yearA], [yearB]) => Number(yearB) - Number(yearA),
+                        )
+                        .map(([year, items]) => (
+                            <div>
+                                <h3>{year}</h3>
+                                <ul>
+                                    {items.map((item) => (
+                                        <li>
+                                            {item.data.type} -{" "}
+                                            {item.data.location}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))
+                }
+            </div>
         </section>
     </section>
 </Layout>
 
 <script>
+    const tableRefs = document.querySelectorAll(".table-of-content a");
+    console.log(tableRefs);
+    tableRefs.forEach((e) => {
+        e.addEventListener("click", () => {
+            tableRefs.forEach((e) => e.classList.remove("active"));
+            e.classList.add("active");
+        });
+    });
+
     const sections = document.querySelectorAll("#biography, #distinctions");
 
     const observer = new IntersectionObserver(
@@ -85,11 +99,14 @@ const groupedDistinctions = distinctions.reduce(
             });
         },
         {
-            // root: null,
-            threshold: [1, 0.2],
+            // rootMargin: "100px",
+            root: null,
+            threshold: 0.4,
         },
     );
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+        observer.observe(section);
+    });
 </script>
 
 <style lang="scss">
@@ -115,7 +132,7 @@ const groupedDistinctions = distinctions.reduce(
         grid-template-columns: 20rem minmax(0, 1fr);
         grid-gap: 64px;
         position: relative;
-        @include respond-to("tablet") {
+        @include respond-to("desktop") {
             display: block;
         }
     }
@@ -135,7 +152,7 @@ const groupedDistinctions = distinctions.reduce(
         position: sticky;
         top: 120px;
         height: fit-content;
-        @include respond-to("tablet") {
+        @include respond-to("desktop") {
             display: none;
         }
     }
@@ -145,7 +162,7 @@ const groupedDistinctions = distinctions.reduce(
     }
     .biography {
         margin-top: 0rem;
-        @include respond-to("tablet") {
+        @include respond-to("desktop") {
             margin-top: 2rem;
         }
         @include respond-to("mobile") {
