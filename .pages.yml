@@ -61,9 +61,6 @@ content:
     type: collection
     path: src/content/distinctions
     fields:
-      - name: title
-        label: Titre
-        type: string
       - name: type
         label: Type
         type: text
