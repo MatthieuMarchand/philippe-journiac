@@ -1,0 +1,164 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { getCollection } from "astro:content";
+
+const distinctions = await getCollection("distinctions");
+
+const groupedDistinctions = distinctions.reduce(
+    (acc, item) => {
+        const year = item.data.received_at.getFullYear();
+
+        if (!acc[year]) {
+            acc[year] = [];
+        }
+
+        acc[year].push(item);
+
+        return acc;
+    },
+    {} as Record<number, typeof distinctions>,
+);
+---
+
+<Layout class="test" pageTitle="Biographie">
+    <section class="container">
+        <h1 class="title">Biographie</h1>
+        <section class="table-of-content">
+            <a href="#biography" data-section="biography">Biographie</a>
+            <a href="#distinctions" data-section="distinctions">Distinctions</a>
+        </section>
+        <section class="content">
+            <p class="biography" id="biography">
+                Né en 1958, c’est à Redon que j’ai eu la chance d’être encadré
+                par un professeur d’art de 11 ans à 14 ans. C’est ainsi que je
+                réalisais à l’âge de 12 ans un concours inter collège où je me
+                suis vu attribuer un prix. Je repris quelques instants mes
+                pinceaux seulement en 1995 pour réaliser le concours de «
+                Solidor en peinture » à St Malo, cette œuvre réalisée sur le
+                site fut primée. En août 2023, je suis revenu de manière
+                intensive à mes pinceaux. Inspiré par l’impressionnisme mes
+                œuvres comprennent des marines, des paysages et des natures
+                mortes. Je décris chaque toile comme une mélodie visuelle ou les
+                couleurs vibrent pour créer une harmonie émotionnelle. Je peins
+                sur motif et en atelier, j’infuse chaque création de passion et
+                d’âme sans chercher à démontrer, mais juste à exposer le réel.
+            </p>
+            <h2 id="distinctions">Distinctions</h2>
+            {
+                Object.entries(groupedDistinctions)
+                    .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+                    .map(([year, items]) => (
+                        <div>
+                            <h3>{year}</h3>
+                            <ul>
+                                {items.map((item) => (
+                                    <li>
+                                        {item.data.type} - {item.data.location}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))
+            }
+        </section>
+    </section>
+</Layout>
+
+<script>
+    const sections = document.querySelectorAll("#biography, #distinctions");
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const elems = document.querySelectorAll(
+                        ".table-of-content a",
+                    );
+                    elems.forEach((e) => e.classList.remove("active"));
+
+                    const newActiveElem = document.querySelector(
+                        `[data-section=${entry.target.id}]`,
+                    );
+                    newActiveElem?.classList.add("active");
+                }
+            });
+        },
+        {
+            // root: null,
+            threshold: [1, 0.2],
+        },
+    );
+    sections.forEach((section) => observer.observe(section));
+</script>
+
+<style lang="scss">
+    h1 {
+        @include font-title();
+    }
+    h2 {
+        @include font-title2();
+    }
+    .table-of-content a {
+        @include font-title();
+        font-size: 48px;
+        margin: 0px 0px;
+        color: $color-secondary;
+    }
+    .table-of-content .active {
+        color: $color-primary;
+    }
+
+    .container {
+        display: grid;
+        /* grid-template-columns: repeat(2, 1fr); */
+        grid-template-columns: 20rem minmax(0, 1fr);
+        grid-gap: 64px;
+        position: relative;
+        @include respond-to("tablet") {
+            display: block;
+        }
+    }
+
+    .title {
+        grid-column: 2;
+    }
+
+    .content {
+        grid-column: 2;
+    }
+
+    .table-of-content {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        position: sticky;
+        top: 120px;
+        height: fit-content;
+        @include respond-to("tablet") {
+            display: none;
+        }
+    }
+
+    .table-of-content h1 {
+        /* background-color: red; */
+    }
+    .biography {
+        margin-top: 0rem;
+        @include respond-to("tablet") {
+            margin-top: 2rem;
+        }
+        @include respond-to("mobile") {
+            margin-top: 1rem;
+        }
+    }
+
+    /* Scroll behavior */
+    #biography {
+        scroll-margin-top: 120px;
+    }
+
+    #distinctions {
+        scroll-margin-top: 120px;
+    }
+</style>

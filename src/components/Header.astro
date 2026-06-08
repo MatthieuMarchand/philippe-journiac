@@ -6,12 +6,13 @@ import BurgerMenu from "./BurgerMenu.astro";
     <h2><a href="/">Philippe Journiac</a></h2>
 
     <nav>
+        <a href="/biographie">Biographie</a>
         <a href="/galerie">Galerie</a>
         <a href="/actualites">Actualités</a>
         <a class="btn-contact" href="/contact">Contact</a>
     </nav>
 
-    <BurgerMenu/>
+    <BurgerMenu />
 </header>
 
 <style lang="scss">
@@ -31,13 +32,13 @@ import BurgerMenu from "./BurgerMenu.astro";
         @include respond-to("tablet") {
             padding: 2rem 4rem;
         }
-        
+
         @include respond-to("mobile") {
             padding: 1rem 2rem;
         }
 
         h2 * {
-			@include font-title(24);
+            @include font-title(24);
         }
 
         nav {
@@ -54,8 +55,8 @@ import BurgerMenu from "./BurgerMenu.astro";
             .btn-contact {
                 background: $color-primary;
                 color: $color-white;
-                padding: .5rem;
-                transition: .5s cubic-bezier(0,1,1,1);
+                padding: 0.5rem;
+                transition: 0.5s cubic-bezier(0, 1, 1, 1);
 
                 &:hover {
                     scale: 0.95;

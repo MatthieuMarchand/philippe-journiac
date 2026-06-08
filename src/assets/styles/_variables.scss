@@ -41,13 +41,21 @@ $fontface-title: "InstrumentSerif-Italic";
 }
 @font-face {
     font-family: InstrumentSerif-Italic;
-    src: url("../fonts/InstrumentSerif-Italic.ttf");
+    src: url("../fonts/InstrumentSerif-Italic.woff2");
+}
+
+@mixin font-title2($font-size: 32) {
+    font-size: #{$font-size}px;
+    font-family: $fontface-title;
+    color: $color-primary;
+    font-weight: normal;
 }
 
 @mixin font-title($font-size: 64) {
     font-size: #{$font-size}px;
     font-family: $fontface-title;
     color: $color-primary;
+    font-weight: normal;
 }
 
 //* ---------------------------
