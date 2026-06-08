@@ -55,3 +55,23 @@ content:
         type: date
         options:
           format: yyyy-MM-dd
+# TROISIEME COLLECTION : LES DISTINCTIONS
+  - name: distinctions
+    label: Distinctions
+    type: collection
+    path: src/content/distinctions
+    fields:
+      - name: title
+        label: Titre
+        type: string
+      - name: type
+        label: Type
+        type: text
+      - name: location
+        label: Lieu
+        type: text
+      - name: received_at
+        label: Date du prix
+        type: date
+        options:
+          format: yyyy-MM-dd
