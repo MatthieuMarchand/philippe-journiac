@@ -1,5 +1,5 @@
 ---
-title: Les artistes créateur
+type: Prix du public
 location: Salon « Les artistes créateurs »
 received_at: 2026-06-08
 ---
