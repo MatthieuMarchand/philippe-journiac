@@ -63,10 +63,10 @@ content:
     fields:
       - name: type
         label: Type
-        type: text
+        type: string
       - name: location
         label: Lieu
-        type: text
+        type: string
       - name: received_at
         label: Date du prix
         type: date
