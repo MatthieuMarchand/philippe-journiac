@@ -103,6 +103,10 @@ const tableaux = await getCollection("tableaux");
             position: relative;
             overflow: hidden;
             @extend %transition;
+
+            @include respond-to("mobile") {
+                font-size: $fontsize-primary-mobile;
+            }
         }
 
         button.activated {
@@ -142,6 +146,10 @@ const tableaux = await getCollection("tableaux");
             display: flex;
             flex-wrap: wrap;
             gap: 4rem;
+            @include respond-to("mobile") {
+                flex-direction: column;
+                gap: 2rem;
+            }
 
             li {
                 flex: 0 0 calc(50% - 2rem);

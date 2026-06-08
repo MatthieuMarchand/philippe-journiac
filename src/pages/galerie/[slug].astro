@@ -52,7 +52,6 @@ const { entry } = Astro.props;
         ".prix .not-for-sale",
     ) as HTMLDivElement;
     const btnContact = document.querySelector(".btn-sale") as HTMLElement;
-    console.log(btnContact);
 
     if (dataForSale && forSale && notForSale && btnContact) {
         if (dataForSale === "true") {
@@ -93,6 +92,9 @@ const { entry } = Astro.props;
         justify-content: end;
         align-items: center;
         display: flex;
+        @include respond-to("mobile") {
+            gap: 1rem;
+        }
     }
 
     .btn-contact {

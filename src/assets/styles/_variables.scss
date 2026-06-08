@@ -10,12 +10,45 @@ $color-primary: #dc4322;
 $color-gray: #856962;
 $color-black: #44150b;
 
+//* ---------------------------
+//* -----<< MEDIA QUERY >>-----
+//* ---------------------------
+
+$breakpoints: (
+    "mobile": 480px,
+    "tablet": 768px,
+    "desktop": 1024px,
+    "large": 1596px,
+);
+
+//* -------------------------------------
+//* -----<< MIXINS & PLACEHOLDERS >>-----
+//* -------------------------------------
+
+@mixin respond-to($breakpoint) {
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (max-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $breakpoint) {
+            @content;
+        }
+    }
+}
+
 //* -------------------------
 //* -----<< FONT FACE >>-----
 //* -------------------------
 
 $fontsize-primary: 18px;
 $fontsize-secondary: 24px;
+$fontsize-h1: 64px;
+$fontsize-h2: 32px;
+
+$fontsize-primary-mobile: 14px;
+$fontsize-h1-mobile: 32px;
+$fontsize-h2-mobile: 32px;
 
 $fontface-regular: "Inter_18pt-Regular";
 $fontface-medium: "Inter_18pt-Medium";
@@ -44,46 +77,22 @@ $fontface-title: "InstrumentSerif-Italic";
     src: url("../fonts/InstrumentSerif-Italic.woff2");
 }
 
-@mixin font-title2($font-size: 32) {
-    font-size: #{$font-size}px;
+@mixin font-title2() {
+    font-size: #{$fontsize-h2};
     font-family: $fontface-title;
     color: $color-primary;
     font-weight: normal;
 }
 
-@mixin font-title($font-size: 64) {
-    font-size: #{$font-size}px;
+@mixin font-title() {
+    font-size: #{$fontsize-h1};
     font-family: $fontface-title;
     color: $color-primary;
     font-weight: normal;
-}
-
-//* ---------------------------
-//* -----<< MEDIA QUERY >>-----
-//* ---------------------------
-
-$breakpoints: (
-    "mobile": 480px,
-    "tablet": 768px,
-    "desktop": 1024px,
-    "large": 1596px,
-);
-
-@mixin respond-to($breakpoint) {
-    @if map.has-key($breakpoints, $breakpoint) {
-        @media (max-width: map.get($breakpoints, $breakpoint)) {
-            @content;
-        }
-    } @else {
-        @media (max-width: $breakpoint) {
-            @content;
-        }
+    @include respond-to("mobile") {
+        font-size: #{$fontsize-h1-mobile};
     }
 }
-
-//* -------------------------------------
-//* -----<< MIXINS & PLACEHOLDERS >>-----
-//* -------------------------------------
 
 %transition {
     transition: 0.5s ease;

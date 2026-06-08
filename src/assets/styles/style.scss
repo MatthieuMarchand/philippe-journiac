@@ -3,7 +3,10 @@ html {
     background: $color-white;
 
     body {
-        font-size: 18px;
+        font-size: $fontsize-primary;
+        @include respond-to("mobile") {
+            font-size: $fontsize-primary-mobile;
+        }
         font-family: $fontface-regular;
         color: $color-black;
         line-height: 1.35;
@@ -43,6 +46,9 @@ html {
 
         h1 {
             margin-top: 6rem;
+            @include respond-to("mobile") {
+                margin-top: 4rem;
+            }
         }
     }
 }

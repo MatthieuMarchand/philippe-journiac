@@ -1,4 +1,4 @@
-<button>
+<button id="burger">
     <div>
         <div></div>
         <div></div>
@@ -6,7 +6,7 @@
     </div>
 </button>
 
-<section>
+<section id="section-burger">
     <nav>
         <a href="/galerie">Galerie</a>
         <a href="/actualites">Actualités</a>
@@ -15,22 +15,27 @@
 </section>
 
 <script>
-    const buttonBurger = document.querySelector("button");
-    const sectionBurger = document.querySelector("section");
+    function initBurger() {
+        console.log("coucou");
+        const buttonBurger = document.querySelector("#burger");
+        const sectionBurger = document.querySelector("#section-burger");
 
-    buttonBurger?.addEventListener("click", () => {
-        if (!sectionBurger) {
-            return;
-        }
+        buttonBurger?.addEventListener("click", () => {
+            if (!sectionBurger) {
+                return;
+            }
 
-        if (buttonBurger.classList.contains("actived")) {
-            buttonBurger.classList.remove("actived");
-            sectionBurger.classList.remove("actived");
-        } else {
-            buttonBurger.classList.add("actived");
-            sectionBurger.classList.add("actived");
-        }
-    });
+            if (buttonBurger.classList.contains("actived")) {
+                buttonBurger.classList.remove("actived");
+                sectionBurger.classList.remove("actived");
+            } else {
+                buttonBurger.classList.add("actived");
+                sectionBurger.classList.add("actived");
+            }
+        });
+    }
+
+    document.addEventListener("astro:page-load", initBurger);
 </script>
 
 <style lang="scss">
@@ -40,6 +45,7 @@
         padding: 0.25rem;
         cursor: pointer;
         display: none;
+        z-index: 2;
 
         @include respond-to("tablet") {
             display: unset;
@@ -72,7 +78,7 @@
                 position: absolute;
                 height: 2px;
                 width: 100%;
-                /* background: $color-primary; */
+                background: $color-primary;
                 @extend %transition;
 
                 &:nth-child(1) {
@@ -117,7 +123,8 @@
             gap: 3rem;
 
             a {
-                @include font-title(24);
+                @include font-title();
+                font-size: 24px;
             }
         }
     }

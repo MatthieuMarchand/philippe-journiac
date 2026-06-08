@@ -116,15 +116,6 @@ const groupedDistinctions = distinctions.reduce(
     h2 {
         @include font-title2();
     }
-    .table-of-content a {
-        @include font-title();
-        font-size: 48px;
-        margin: 0px 0px;
-        color: $color-secondary;
-    }
-    .table-of-content .active {
-        color: $color-primary;
-    }
 
     .container {
         display: grid;
@@ -155,11 +146,18 @@ const groupedDistinctions = distinctions.reduce(
         @include respond-to("desktop") {
             display: none;
         }
+
+        a {
+            @include font-title();
+            font-size: 48px;
+            margin: 0px 0px;
+            color: $color-secondary;
+        }
+        .active {
+            color: $color-primary;
+        }
     }
 
-    .table-of-content h1 {
-        /* background-color: red; */
-    }
     .biography {
         margin-top: 0rem;
         @include respond-to("desktop") {

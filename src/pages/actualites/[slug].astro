@@ -3,11 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content"; // Import de 'render' ici !
 
 export async function getStaticPaths() {
-  const actualites = await getCollection("actualites");
-  return actualites.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+    const actualites = await getCollection("actualites");
+    return actualites.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
@@ -16,61 +16,61 @@ const { Content } = await render(entry);
 ---
 
 <Layout pageTitle={entry.data.title}>
-  <h1>{entry.data.title}</h1>
+    <h1>{entry.data.title}</h1>
 
-  <p class="date">
-    Publié le
-    {
-      entry.data.publish_at.toLocaleDateString("fr-FR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      })
-    }
-  </p>
+    <p class="date">
+        Publié le
+        {
+            entry.data.publish_at.toLocaleDateString("fr-FR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+            })
+        }
+    </p>
 
-  <p class="lede">{entry.data.lede}</p>
+    <p class="lede">{entry.data.lede}</p>
 
-  <div class="image-container">
-    <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
-  </div>
+    <div class="image-container">
+        <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+    </div>
 
-  <section class="content">
-    <Content />
-  </section>
+    <section class="content">
+        <Content />
+    </section>
 </Layout>
 
 <style lang="scss">
-  h1 {
-    margin-top: 8rem;
-    @include font-title();
-  }
-
-  p.date, p.lede {
-    color: $color-gray;
-  }
-
-  p.date {
-    margin-top: 1rem;
-  }
-
-  p.lede {
-    margin-top: 2rem;
-  }
-
-  div.image-container {
-    margin-top: 3rem;
-    display: flex;
-    justify-content: center;
-
-    img {
-      max-height: 30rem;
-      width: 100%;
-      object-fit: contain;
+    h1 {
+        @include font-title();
     }
-  }
 
-  section.content {
-    margin-top: 3rem;
-  }
+    p.date,
+    p.lede {
+        color: $color-gray;
+    }
+
+    p.date {
+        margin-top: 1rem;
+    }
+
+    p.lede {
+        margin-top: 2rem;
+    }
+
+    div.image-container {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: center;
+
+        img {
+            max-height: 30rem;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    section.content {
+        margin-top: 3rem;
+    }
 </style>

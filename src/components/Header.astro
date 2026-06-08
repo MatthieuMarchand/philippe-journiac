@@ -7,8 +7,8 @@ import BurgerMenu from "./BurgerMenu.astro";
 
     <nav>
         <a href="/biographie">Biographie</a>
+        <a href="/actualites">Expositions</a>
         <a href="/galerie">Galerie</a>
-        <a href="/actualites">Actualités</a>
         <a class="btn-contact" href="/contact">Contact</a>
     </nav>
 
@@ -38,7 +38,8 @@ import BurgerMenu from "./BurgerMenu.astro";
         }
 
         h2 * {
-            @include font-title(24);
+            @include font-title();
+            font-size: 24px;
         }
 
         nav {
