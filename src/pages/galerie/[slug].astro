@@ -3,60 +3,106 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths() {
-  const tableaux = await getCollection("tableaux");
-  return tableaux.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+    const tableaux = await getCollection("tableaux");
+    return tableaux.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
 ---
 
 <Layout pageTitle={entry.data.title}>
-  <h1>{entry.data.title}</h1>
+    <h1>{entry.data.title}</h1>
 
-  <p class="infos">
-    <span>{entry.data.dimensions}</span>
-    
-    <span>-</span>
-    
-    <span>
-      {
-        entry.data.date_created.toLocaleDateString(undefined, {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      }
-    </span>
-  </p>
+    <p class="infos">
+        <span>{entry.data.dimensions}</span>
 
-  <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+        <span>-</span>
 
-  <p class="prix">{entry.data.price} euros</p>
+        <span>
+            {
+                entry.data.date_created.toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </span>
+    </p>
+
+    <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
+
+    <p data-for-sale={entry.data.for_sale ? "true" : "false"} class="prix">
+        <span class="for-sale">
+            prix net : {entry.data.price} euros
+        </span>
+        <span class="not-for-sale"> Tableau non disponible </span>
+        <a class="btn-contact btn-sale" href="/contact">Contacter le vendeur</a>
+    </p>
 </Layout>
 
+<script>
+    const dataForSale = document
+        .querySelector(".prix")
+        ?.getAttribute("data-for-sale");
+    const forSale = document.querySelector(".prix .for-sale") as HTMLDivElement;
+    const notForSale = document.querySelector(
+        ".prix .not-for-sale",
+    ) as HTMLDivElement;
+    const btnContact = document.querySelector(".btn-sale") as HTMLElement;
+    console.log(btnContact);
+
+    if (dataForSale && forSale && notForSale && btnContact) {
+        if (dataForSale === "true") {
+            forSale.style.display = "";
+            notForSale.style.display = "none";
+            btnContact.style.display = "";
+        } else {
+            forSale.style.display = "none";
+            notForSale.style.display = "";
+            btnContact.style.display = "none";
+        }
+    }
+</script>
+
 <style lang="scss">
-  h1 {
-    @include font-title();
-    text-align: center;
-  }
+    h1 {
+        @include font-title();
+        text-align: center;
+    }
 
-  p.infos {
-    margin-top: 1rem;
-    text-align: center;
-  }
+    p.infos {
+        margin-top: 1rem;
+        text-align: center;
+    }
 
-  img {
-    margin-top: 3rem;
-    width: 100%;
-    max-height: 100dvh;
-    object-fit: contain;
-  }
+    img {
+        margin-top: 3rem;
+        width: 100%;
+        max-height: 100dvh;
+        object-fit: contain;
+    }
 
-  p.prix {
-    margin-top: 1rem;
-    text-align: end;
-  }
+    p.prix {
+        margin-top: 1rem;
+        text-align: end;
+        color: $color-gray;
+        gap: 32px;
+        justify-content: end;
+        align-items: center;
+        display: flex;
+    }
+
+    .btn-contact {
+        background: $color-primary;
+        color: $color-white;
+        padding: 0.5rem;
+        transition: 0.5s cubic-bezier(0, 1, 1, 1);
+
+        &:hover {
+            scale: 0.95;
+        }
+    }
 </style>

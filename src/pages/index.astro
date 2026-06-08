@@ -15,39 +15,48 @@ import Layout from "../layouts/Layout.astro";
     <section id="biography">
         <div>
             <h2>Biographie</h2>
-            
+
             <p>
-                Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget. Lorem ipsum dolor sit amet consectetur. Gravida tellus condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In in pellentesque venenatis sapien orci feugiat. Sapien libero tortor eget vivamus eget.
+                Lorem ipsum dolor sit amet consectetur. Gravida tellus
+                condimentum euismod leo. Sit nunc dictumst dui pharetra leo. In
+                in pellentesque venenatis sapien orci feugiat. Sapien libero
+                tortor eget vivamus eget. Lorem ipsum dolor sit amet
+                consectetur. Gravida tellus condimentum euismod leo. Sit nunc
+                dictumst dui pharetra leo. In in pellentesque venenatis sapien
+                orci feugiat. Sapien libero tortor eget vivamus eget.
             </p>
-            
-            <a href="/tableaux">Découvrir les tableaux</a>
+
+            <a href="/galerie">Découvrir les tableaux</a>
         </div>
 
-        <img src="/public/images/photo-biographie.png" alt="Photo de Philippe Journiac en train de peindre.">
+        <img
+            src="/public/images/photo-biographie.png"
+            alt="Photo de Philippe Journiac en train de peindre."
+        />
     </section>
 
     <LastNews />
 </Layout>
 
 <script>
-    document.addEventListener('astro:page-load', () => {
-        const header = document.querySelector('header');
-        const sectionHero = document.getElementById('hero');
+    document.addEventListener("astro:page-load", () => {
+        const header = document.querySelector("header");
+        const sectionHero = document.getElementById("hero");
 
         if (header && sectionHero) {
-            header.style.transition = 'unset';
+            header.style.transition = "unset";
             header.style.marginBottom = `-${header.offsetHeight}px`;
-            header.style.background = 'unset';
-            
-            window.addEventListener('scroll', () => {
-                header.style.transition = '0.5s ease';
+            header.style.background = "unset";
+
+            window.addEventListener("scroll", () => {
+                header.style.transition = "0.5s ease";
 
                 if (window.scrollY > 200) {
-                    header.style.background = '#FFFCFB';
+                    header.style.background = "#FFFCFB";
                 } else {
-                    header.style.background = 'unset';
+                    header.style.background = "unset";
                 }
-            }); 
+            });
         }
     });
 </script>
@@ -104,7 +113,7 @@ import Layout from "../layouts/Layout.astro";
                 color: $color-white;
                 font-family: $fontface-medium;
                 font-size: 20px;
-                transition: .5s cubic-bezier(0,1,1,1);
+                transition: 0.5s cubic-bezier(0, 1, 1, 1);
 
                 &:hover {
                     scale: 0.95;

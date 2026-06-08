@@ -15,20 +15,20 @@
 </section>
 
 <script>
-    const buttonBurger = document.querySelector('button');
-    const sectionBurger = document.querySelector('section');
+    const buttonBurger = document.querySelector("button");
+    const sectionBurger = document.querySelector("section");
 
-    buttonBurger?.addEventListener('click', () => {
+    buttonBurger?.addEventListener("click", () => {
         if (!sectionBurger) {
             return;
         }
 
-        if (buttonBurger.classList.contains('actived')) {
-            buttonBurger.classList.remove('actived');
-            sectionBurger.classList.remove('actived');
+        if (buttonBurger.classList.contains("actived")) {
+            buttonBurger.classList.remove("actived");
+            sectionBurger.classList.remove("actived");
         } else {
-            buttonBurger.classList.add('actived');
-            sectionBurger.classList.add('actived');
+            buttonBurger.classList.add("actived");
+            sectionBurger.classList.add("actived");
         }
     });
 </script>
@@ -37,7 +37,7 @@
     button {
         border: unset;
         background: unset;
-        padding: .25rem;
+        padding: 0.25rem;
         cursor: pointer;
         display: none;
 
@@ -51,38 +51,38 @@
                     top: calc(50% - 1px);
                     transform: rotateZ(45deg);
                 }
-                
+
                 div:nth-child(2) {
                     opacity: 0;
                 }
-                
+
                 div:nth-child(3) {
                     bottom: calc(50% - 1px);
                     transform: rotateZ(-45deg);
                 }
             }
         }
-        
+
         & > div {
             position: relative;
             width: 2rem;
             height: 1.5rem;
-            
+
             div {
                 position: absolute;
                 height: 2px;
                 width: 100%;
-                background: $color-primary;
+                /* background: $color-primary; */
                 @extend %transition;
-                
+
                 &:nth-child(1) {
                     top: 0;
                 }
-                
+
                 &:nth-child(2) {
                     top: calc(50% - 1px);
                 }
-                
+
                 &:nth-child(3) {
                     bottom: 0;
                 }
@@ -101,7 +101,7 @@
         visibility: hidden;
         opacity: 0;
         @extend %transition;
-        
+
         &.actived {
             visibility: visible;
             opacity: 1;

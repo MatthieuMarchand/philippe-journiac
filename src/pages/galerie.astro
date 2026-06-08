@@ -60,12 +60,12 @@ const tableaux = await getCollection("tableaux");
         button_all_paintings?.addEventListener('click', () => {
             button_for_sale?.classList.remove('activated');
             button_all_paintings?.classList.add('activated');
-            
+
             painting_items.forEach(item => {
                 item.style.display = '';
             });
         })
-        
+
         button_for_sale?.addEventListener('click', () => {
             button_all_paintings?.classList.remove('activated');
             button_for_sale?.classList.add('activated');
@@ -125,7 +125,7 @@ const tableaux = await getCollection("tableaux");
         button:nth-child(1)::before {
             transform: translateX(100%);
         }
-        
+
         button:nth-child(2)::before {
             transform: translateX(-100%);
         }
@@ -137,7 +137,7 @@ const tableaux = await getCollection("tableaux");
 
     section {
         margin-top: 4rem;
-        
+
         ul {
             display: flex;
             flex-wrap: wrap;
@@ -157,12 +157,12 @@ const tableaux = await getCollection("tableaux");
 
                 article {
                     padding: 1rem;
-                    
+
                     div.image-container {
                         width: 100%;
                         aspect-ratio: 4 / 3;
                         overflow: hidden;
-    
+
                         img {
                             width: 100%;
                             height: 100%;
@@ -170,20 +170,20 @@ const tableaux = await getCollection("tableaux");
                             @extend %transition;
                         }
                     }
-    
-    
+
+
                     div.infos {
                         div {
                             margin-top: 2rem;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            
+
                             h2 {
                                 font-family: $fontface-semibold;
                                 font-size: $fontsize-secondary;
                             }
-                            
+
                         }
 
                         & > p {

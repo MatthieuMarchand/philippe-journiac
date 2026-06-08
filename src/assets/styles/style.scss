@@ -1,13 +1,18 @@
 html {
     background: $color-white;
-    
+
     body {
         font-size: 18px;
         font-family: $fontface-regular;
         color: $color-black;
         line-height: 1.35;
-    
-        h1, h2, h3, h4, h5, h6 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             line-height: 1;
         }
 
@@ -16,23 +21,25 @@ html {
             text-decoration: inherit;
         }
     }
-    
+
     main {
         max-width: 100rem;
         margin: auto;
+        //@TODO temporary for demo : find a way to fix the include.
+        margin: 0rem 8rem;
+        /*
+        @include respond-to("large") {
+            margin: 0 8rem;
+        } */
 
         @include respond-to("tablet") {
             margin: 0 4rem;
         }
-    
+
         @include respond-to("mobile") {
             margin: 0 2rem;
         }
 
-        @include respond-to("desktop") {
-            margin: 0 8rem;
-        }
-        
         h1 {
             margin-top: 6rem;
         }
@@ -47,7 +54,12 @@ section.content {
         font-family: $fontface-medium;
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-family: $fontface-title;
         color: $color-primary;
     }

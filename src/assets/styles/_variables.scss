@@ -4,11 +4,11 @@
 //* -----<< COLORS >>-----
 //* ----------------------
 
-$color-white: #FFFCFB;
-$color-secondary: #FFEAE6;
-$color-primary: #DC4322;
+$color-white: #fffcfb;
+$color-secondary: #ffeae6;
+$color-primary: #dc4322;
 $color-gray: #856962;
-$color-black: #44150B;
+$color-black: #44150b;
 
 //* -------------------------
 //* -----<< FONT FACE >>-----
@@ -17,11 +17,11 @@ $color-black: #44150B;
 $fontsize-primary: 18px;
 $fontsize-secondary: 24px;
 
-$fontface-regular: 'Inter_18pt-Regular';
-$fontface-medium: 'Inter_18pt-Medium';
-$fontface-semibold: 'Inter_24pt-SemiBold';
-$fontface-bold: 'Inter_28pt-Bold';
-$fontface-title: 'InstrumentSerif-Italic';
+$fontface-regular: "Inter_18pt-Regular";
+$fontface-medium: "Inter_18pt-Medium";
+$fontface-semibold: "Inter_24pt-SemiBold";
+$fontface-bold: "Inter_28pt-Bold";
+$fontface-title: "InstrumentSerif-Italic";
 
 @font-face {
     font-family: Inter_18pt-Regular;
@@ -45,9 +45,9 @@ $fontface-title: 'InstrumentSerif-Italic';
 }
 
 @mixin font-title($font-size: 64) {
-  font-size: #{$font-size}px;
-  font-family: $fontface-title;
-  color: $color-primary;
+    font-size: #{$font-size}px;
+    font-family: $fontface-title;
+    color: $color-primary;
 }
 
 //* ---------------------------
@@ -55,24 +55,22 @@ $fontface-title: 'InstrumentSerif-Italic';
 //* ---------------------------
 
 $breakpoints: (
-  "mobile": 480px,
-  "tablet": 768px,
-  "desktop": 1024px,
-  "large": 1440px
+    "mobile": 480px,
+    "tablet": 768px,
+    "desktop": 1024px,
+    "large": 1596px,
 );
 
 @mixin respond-to($breakpoint) {
-  @if map.has-key($breakpoints, $breakpoint) {
-    @media (max-width: map.get($breakpoints, $breakpoint)) {
-      @content;
+    @if map.has-key($breakpoints, $breakpoint) {
+        @media (max-width: map.get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $breakpoint) {
+            @content;
+        }
     }
-  } 
-
-  @else {
-    @media (max-width: $breakpoint) {
-      @content;
-    }
-  }
 }
 
 //* -------------------------------------
@@ -80,5 +78,5 @@ $breakpoints: (
 //* -------------------------------------
 
 %transition {
-  transition: 0.5s ease;
+    transition: 0.5s ease;
 }
