@@ -34,37 +34,19 @@ const { entry } = Astro.props;
 
     <img src=`/content${entry.data.image}` alt=`${entry.data.title}` />
 
-    <p data-for-sale={entry.data.for_sale ? "true" : "false"} class="prix">
+    <p class="prix">
+    {
+    entry.data.for_sale ? (
         <span class="for-sale">
             prix net : {entry.data.price} euros
         </span>
-        <span class="not-for-sale"> Tableau non disponible </span>
         <a class="btn-contact btn-sale" href="/contact">Contacter le vendeur</a>
+    ) : (
+        <span class="not-for-sale"> Tableau non disponible </span>
+    )
+    }
     </p>
 </Layout>
-
-<script>
-    const dataForSale = document
-        .querySelector(".prix")
-        ?.getAttribute("data-for-sale");
-    const forSale = document.querySelector(".prix .for-sale") as HTMLDivElement;
-    const notForSale = document.querySelector(
-        ".prix .not-for-sale",
-    ) as HTMLDivElement;
-    const btnContact = document.querySelector(".btn-sale") as HTMLElement;
-
-    if (dataForSale && forSale && notForSale && btnContact) {
-        if (dataForSale === "true") {
-            forSale.style.display = "";
-            notForSale.style.display = "none";
-            btnContact.style.display = "";
-        } else {
-            forSale.style.display = "none";
-            notForSale.style.display = "";
-            btnContact.style.display = "none";
-        }
-    }
-</script>
 
 <style lang="scss">
     h1 {
